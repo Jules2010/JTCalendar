@@ -123,93 +123,55 @@
     NSLog(@"Previous page loaded");
     
     
-    NSDate *currentDate = self.calendar.currentDate;//[General makeAbsoluteNSDate:self.calendar.currentDate];
+    NSDate *currentDate = self.calendar.currentDate;
     
     NSLog(@"Previous page loaded - current date=%@", currentDate);
-    
-    //    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentDate];
-    //    components.day = 1;
-    //    NSDate *firstDayOfMonthDate = [[NSCalendar currentCalendar] dateFromComponents: components];
-    //    NSLog(@"First day of month: %@", [firstDayOfMonthDate descriptionWithLocale:[NSLocale currentLocale]]);
-    
-    //NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorian.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     
-    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[NSTimeZone localTimeZone].secondsFromGMT];
-    
-    
-    // NSDateComponents *localComponents = [localCalendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:june];
-    
-    
-    //NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
     NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendar.currentDate];
     
     [comp setDay:1];
     
     NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
     
-    //NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-    
-    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //    [formatter setDateFormat:@"MM/dd/yyyy"];
-    //    NSDate *date = [formatter dateFromString:sDate];
-    //
-    
-    
     [self.calendar setCurrentDate:firstDayOfMonthDate];
+    [self.calendar setCurrentDateSelected:firstDayOfMonthDate];
+    
+    [self.calendar repositionViews];
+    [self.calendar.contentView reloadData];
     
     [self.calendarMenuView setScrollEnabled:NO];
     [self.calendarContentView setScrollEnabled:NO];
-
 }
 
 - (void)calendarDidLoadNextPage
 {
     NSLog(@"Next page loaded");
     
-    NSDate *currentDate = self.calendar.currentDate;//[General makeAbsoluteNSDate:self.calendar.currentDate];
+    NSDate *currentDate = self.calendar.currentDate;
     
     NSLog(@"Next page loaded - current date=%@", currentDate);
     
-    //    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentDate];
-    //    components.day = 1;
-    //    NSDate *firstDayOfMonthDate = [[NSCalendar currentCalendar] dateFromComponents: components];
-    //    NSLog(@"First day of month: %@", [firstDayOfMonthDate descriptionWithLocale:[NSLocale currentLocale]]);
-    
-    //NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     gregorian.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
-    
-    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[NSTimeZone localTimeZone].secondsFromGMT];
-    
-    
-    // NSDateComponents *localComponents = [localCalendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:june];
-    
-    
-    //NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
+
     NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendar.currentDate];
     
     [comp setDay:1];
     
     NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
-    
-    //NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-    
-    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //    [formatter setDateFormat:@"MM/dd/yyyy"];
-    //    NSDate *date = [formatter dateFromString:sDate];
-    //
-    
-    
+
     [self.calendar setCurrentDate:firstDayOfMonthDate];
+    [self.calendar setCurrentDateSelected:firstDayOfMonthDate];
+    
+    [self.calendar repositionViews];
+    [self.calendar.contentView reloadData];
     
     [self.calendarMenuView setScrollEnabled:NO];
     [self.calendarContentView setScrollEnabled:NO];
 
-    
 }
 
 #pragma mark - Transition examples
