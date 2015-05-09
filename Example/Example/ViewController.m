@@ -26,7 +26,7 @@
     {
         self.calendar.calendarAppearance.calendar.firstWeekday = 2; // Sunday == 1, Saturday == 7
         self.calendar.calendarAppearance.dayCircleRatio = 9. / 10.;
-        self.calendar.calendarAppearance.ratioContentMenu = 2.;
+        self.calendar.calendarAppearance.ratioContentMenu = 1.;
         self.calendar.calendarAppearance.focusSelectedDayChangeMode = YES;
         
         // Customize the text for each month
@@ -58,6 +58,8 @@
     [self createRandomEvents];
     
     [self.calendar reloadData];
+    [self.calendarMenuView setScrollEnabled:NO];
+    [self.calendarContentView setScrollEnabled:NO];
 }
 
 - (void)viewDidLayoutSubviews
@@ -100,14 +102,114 @@
     NSLog(@"Date: %@ - %ld events", date, [events count]);
 }
 
+- (IBAction)btnNextMonth:(id)sender
+{
+    NSLog(@"btnNextMonth");
+
+    [self.calendar loadNextPage];
+    
+}
+
+- (IBAction)btnPreviousMonth:(id)sender
+{
+    NSLog(@"btnPreviousMonth");
+
+    [self.calendar loadPreviousPage];
+
+}
+
 - (void)calendarDidLoadPreviousPage
 {
     NSLog(@"Previous page loaded");
+    
+    
+    NSDate *currentDate = self.calendar.currentDate;//[General makeAbsoluteNSDate:self.calendar.currentDate];
+    
+    NSLog(@"Previous page loaded - current date=%@", currentDate);
+    
+    //    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentDate];
+    //    components.day = 1;
+    //    NSDate *firstDayOfMonthDate = [[NSCalendar currentCalendar] dateFromComponents: components];
+    //    NSLog(@"First day of month: %@", [firstDayOfMonthDate descriptionWithLocale:[NSLocale currentLocale]]);
+    
+    //NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorian.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[NSTimeZone localTimeZone].secondsFromGMT];
+    
+    
+    // NSDateComponents *localComponents = [localCalendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:june];
+    
+    
+    //NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
+    NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendar.currentDate];
+    
+    [comp setDay:1];
+    
+    NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
+    
+    //NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //    [formatter setDateFormat:@"MM/dd/yyyy"];
+    //    NSDate *date = [formatter dateFromString:sDate];
+    //
+    
+    
+    [self.calendar setCurrentDate:firstDayOfMonthDate];
+    
+    [self.calendarMenuView setScrollEnabled:NO];
+    [self.calendarContentView setScrollEnabled:NO];
+
 }
 
 - (void)calendarDidLoadNextPage
 {
     NSLog(@"Next page loaded");
+    
+    NSDate *currentDate = self.calendar.currentDate;//[General makeAbsoluteNSDate:self.calendar.currentDate];
+    
+    NSLog(@"Next page loaded - current date=%@", currentDate);
+    
+    //    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentDate];
+    //    components.day = 1;
+    //    NSDate *firstDayOfMonthDate = [[NSCalendar currentCalendar] dateFromComponents: components];
+    //    NSLog(@"First day of month: %@", [firstDayOfMonthDate descriptionWithLocale:[NSLocale currentLocale]]);
+    
+    //NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    gregorian.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    
+    //gregorian.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[NSTimeZone localTimeZone].secondsFromGMT];
+    
+    
+    // NSDateComponents *localComponents = [localCalendar components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:june];
+    
+    
+    //NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
+    NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendar.currentDate];
+    
+    [comp setDay:1];
+    
+    NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
+    
+    //NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //    [formatter setDateFormat:@"MM/dd/yyyy"];
+    //    NSDate *date = [formatter dateFromString:sDate];
+    //
+    
+    
+    [self.calendar setCurrentDate:firstDayOfMonthDate];
+    
+    [self.calendarMenuView setScrollEnabled:NO];
+    [self.calendarContentView setScrollEnabled:NO];
+
+    
 }
 
 #pragma mark - Transition examples

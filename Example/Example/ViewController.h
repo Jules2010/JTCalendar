@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *calendarContentViewHeight;
 
 @property (strong, nonatomic) JTCalendar *calendar;
+- (IBAction)btnNextMonth:(id)sender;
+- (IBAction)btnPreviousMonth:(id)sender;
 
 @end

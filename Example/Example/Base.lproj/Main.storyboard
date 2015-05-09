@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLk-nx-MCc" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <rect key="frame" x="60" y="20" width="480" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wRk-E7-7hS"/>
@@ -32,9 +32,10 @@
                                     <constraint firstAttribute="height" constant="300" id="Kfn-Ge-jpQ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-Js-Lak">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAZ-Js-Lak">
                                 <rect key="frame" x="30" y="439" width="108" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="Htp-we-GYc"/>
                                     <constraint firstAttribute="height" constant="30" id="IKB-he-ALt"/>
                                 </constraints>
                                 <state key="normal" title="Today">
@@ -44,9 +45,10 @@
                                     <action selector="didGoTodayTouch" destination="vXZ-lx-hvc" eventType="touchUpInside" id="VSR-WY-P5H"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-lR-Xrr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-lR-Xrr">
                                 <rect key="frame" x="438" y="439" width="116" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="Kca-3v-Wkp"/>
                                     <constraint firstAttribute="height" constant="30" id="v0J-jr-NiI"/>
                                 </constraints>
                                 <state key="normal" title="Change mode">
@@ -56,6 +58,32 @@
                                     <action selector="didChangeModeTouch" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uEc-Nc-0ds"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKT-LT-N4F">
+                                <rect key="frame" x="0.0" y="20" width="60" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fDk-da-kR0"/>
+                                    <constraint firstAttribute="width" constant="60" id="sXd-zS-puc"/>
+                                </constraints>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPreviousMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NL6-de-tfM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rda-zf-gmX">
+                                <rect key="frame" x="539" y="20" width="60" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="K7C-Xk-pMo"/>
+                                    <constraint firstAttribute="width" constant="60" id="vhc-C2-Agi"/>
+                                </constraints>
+                                <state key="normal" title="&gt;">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnNextMonth:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="oWn-9e-S9X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -63,21 +91,25 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bLk-nx-MCc" secondAttribute="trailing" id="3Xi-dc-GLe"/>
                             <constraint firstItem="IaV-x3-ghF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="BP3-tk-oFp"/>
                             <constraint firstItem="bLk-nx-MCc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="HVR-vR-z6b"/>
+                            <constraint firstItem="gKT-LT-N4F" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="I15-mJ-5sj"/>
                             <constraint firstAttribute="trailing" secondItem="IaV-x3-ghF" secondAttribute="trailing" id="ILA-fg-kaE"/>
-                            <constraint firstItem="tAZ-Js-Lak" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="Il1-mE-TXp"/>
-                            <constraint firstItem="m6a-lR-Xrr" firstAttribute="top" secondItem="IaV-x3-ghF" secondAttribute="bottom" constant="30" id="JGt-zH-o6k"/>
+                            <constraint firstItem="tAZ-Js-Lak" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="14" id="Il1-mE-TXp"/>
+                            <constraint firstItem="m6a-lR-Xrr" firstAttribute="top" secondItem="IaV-x3-ghF" secondAttribute="bottom" constant="69" id="JGt-zH-o6k"/>
+                            <constraint firstItem="gKT-LT-N4F" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="MSX-Jy-gIu"/>
                             <constraint firstItem="IaV-x3-ghF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="PYk-FM-FXS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IaV-x3-ghF" secondAttribute="trailing" id="PvC-p0-iWl"/>
                             <constraint firstItem="bLk-nx-MCc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Rd4-Q9-L4E"/>
                             <constraint firstItem="bLk-nx-MCc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="WQF-hb-hq1"/>
-                            <constraint firstItem="bLk-nx-MCc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="YQ1-f6-O16"/>
-                            <constraint firstItem="tAZ-Js-Lak" firstAttribute="top" secondItem="IaV-x3-ghF" secondAttribute="bottom" constant="30" id="ZYm-cc-wFZ"/>
+                            <constraint firstItem="bLk-nx-MCc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="60" id="YQ1-f6-O16"/>
+                            <constraint firstItem="tAZ-Js-Lak" firstAttribute="top" secondItem="IaV-x3-ghF" secondAttribute="bottom" constant="69" id="ZYm-cc-wFZ"/>
+                            <constraint firstAttribute="trailing" secondItem="rda-zf-gmX" secondAttribute="trailing" constant="1" id="aFO-im-6Vo"/>
                             <constraint firstAttribute="trailing" secondItem="IaV-x3-ghF" secondAttribute="trailing" id="ab3-jD-An0"/>
                             <constraint firstAttribute="trailing" secondItem="bLk-nx-MCc" secondAttribute="trailing" id="asl-i5-V9P"/>
                             <constraint firstItem="IaV-x3-ghF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="cFY-Hs-lva"/>
                             <constraint firstAttribute="trailing" secondItem="IaV-x3-ghF" secondAttribute="trailing" id="d19-oL-lkX"/>
                             <constraint firstItem="IaV-x3-ghF" firstAttribute="top" secondItem="bLk-nx-MCc" secondAttribute="bottom" id="rX7-ap-Tfe"/>
-                            <constraint firstAttribute="trailing" secondItem="bLk-nx-MCc" secondAttribute="trailing" id="sT1-xO-UwV"/>
+                            <constraint firstAttribute="trailing" secondItem="bLk-nx-MCc" secondAttribute="trailing" constant="60" id="sT1-xO-UwV"/>
+                            <constraint firstItem="rda-zf-gmX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="uLD-EP-BWs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m6a-lR-Xrr" secondAttribute="trailing" constant="30" id="yXq-gU-Nbf"/>
                         </constraints>
                         <variation key="default">
