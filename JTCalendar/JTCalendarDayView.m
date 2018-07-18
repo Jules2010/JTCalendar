@@ -242,8 +242,8 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
     
     if(animated){
         [UIView animateWithDuration:.3 animations:^{
-            circleView.layer.opacity = opacity;
-            circleView.transform = tr;
+            self->circleView.layer.opacity = opacity;
+            self->circleView.transform = tr;
         }];
     }
     else{
